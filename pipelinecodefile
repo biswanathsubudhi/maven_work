@@ -25,7 +25,15 @@ pipeline   {
         
         stage('Upload to Nenxus')   {
             steps   {
-                //code for nexus upload
+                nexusArtifactUploader artifacts: [[artifactId: 'myweb', classifier: '', 
+                file: 'target/myweb.war', 
+                type: 'war']], 
+                credentialsId: '7891fac7-9335-4a65-a49f-c5ee9af0d2f1', 
+                groupId: 'in.javahome', 
+                nexusUrl: '65.0.81.107:8081', 
+                nexusVersion: 'nexus3', protocol: 'http', 
+                repository: 'sample-release', 
+                version: '0.0.2-SNAPSHOT'
             }
         }
     }
